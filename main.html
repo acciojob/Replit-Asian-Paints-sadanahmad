@@ -1,16 +1,78 @@
 <!DOCTYPE html>
-
 <html>
-
 <head>
-	<link rel="stylesheet" href="styles.css">
+	<title>Grid Color Changer</title>
+	<style>
+		#grid-container {
+			display: grid;
+			grid-template-columns: repeat(3, 1fr);
+			grid-template-rows: repeat(3, 1fr);
+			gap: 10px;
+		}
+
+		.grid-item {
+			background-color: transparent;
+			border: 1px solid black;
+			padding: 20px;
+			text-align: center;
+			font-size: 40px;
+		}
+
+		.color-input {
+			margin: 10px;
+		}
+	</style>
 </head>
-
 <body>
-	<!-- the entire body must be written by student -->
-    <script type="text/javascript" src="./script.js">
-</script>
+	<div id="grid-container">
+		<div class="grid-item" id="1">1</div>
+		<div class="grid-item" id="2">2</div>
+		<div class="grid-item" id="3">3</div>
+		<div class="grid-item" id="4">4</div>
+		<div class="grid-item" id="5">5</div>
+		<div class="grid-item" id="6">6</div>
+		<div class="grid-item" id="7">7</div>
+		<div class="grid-item" id="8">8</div>
+		<div class="grid-item" id="9">9</div>
+	</div>
 
+	<label for="block_id">Block ID:</label>
+	<input type="text" id="block_id">
+
+	<label for="color_id">Color:</label>
+	<input type="color" id="color_id" class="color-input">
+
+	<button id="change_button">Change Color</button>
+	<button id="reset_button">Reset</button>
+
+	<script>
+		// Get grid items
+		const gridItems = document.querySelectorAll('.grid-item');
+
+		// Reset grid items color
+		const resetGridItemsColor = () => {
+			gridItems.forEach(item => {
+				item.style.backgroundColor = 'transparent';
+			});
+		};
+
+		// Change color of a specific grid item
+		const changeGridItemColor = (id, color) => {
+			const gridItem = document.getElementById(id);
+			gridItem.style.backgroundColor = color;
+		};
+
+		// Event listener for change button
+		document.getElementById('change_button').addEventListener('click', () => {
+			const blockId = document.getElementById('block_id').value;
+			const color = document.getElementById('color_id').value;
+			changeGridItemColor(blockId, color);
+		});
+
+		// Event listener for reset button
+		document.getElementById('reset_button').addEventListener('click', () => {
+			resetGridItemsColor();
+		});
+	</script>
 </body>
-
 </html>
